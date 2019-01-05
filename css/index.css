@@ -8,6 +8,14 @@ img{display: block;}
 /*###清除浮动*/
 .clearfix{*zoom: 1;}
 .clearfix:after{content: "";display: block;clear: both;}
+.commonTitle{
+    color:#009ee0;
+    font-size:80px;
+    line-height:0.8;
+    font-weight:bold;
+    letter-spacing:-5px;
+}
+
 #wrap{
     height: 100%;
     position: relative;
@@ -101,16 +109,17 @@ img{display: block;}
     top: 0;
     height: 500%;
     width: 100%;
-    background: pink;
+    /*background: pink;*/
     transition:top 1s ;
 }
 .contentMain>li{
     height: 20%;
     position: relative;
+    background-repeat:no-repeat;
 
 }
 .contentMain>li section{
-    background: blueviolet;
+    /*background: blueviolet;*/
     width: 1100px;
     height: 520px;
     position: absolute;
@@ -119,5 +128,117 @@ img{display: block;}
     right: 0;
     bottom: 0;
     margin: auto;
+}
+.contentMain>li:nth-child(1){
+    background-image: url(../imgs/bg1.jpg);
+}
+.contentMain>li:nth-child(2){
+    background-image: url(../imgs/bg2.jpg);
+}
+.contentMain>li:nth-child(3){
+    background-image: url(../imgs/bg3.jpg);
+}
+.contentMain>li:nth-child(4){
+    background-image: url(../imgs/bg4.jpg);
+}
+.contentMain>li:nth-child(5){
+    background-image: url(../imgs/bg5.jpg);
+}
+.home{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.home .homeCarousel{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: opacity 1s, transform 1s;
+}
+.homeCarousel li{
+    width: 100%;
+    height: 520px;
+    position: absolute;
+    top:0;
+    left: 0;
+    text-align: center;
+    line-height: 520px;
+    color: white;
+    font-size: 80px;
+    visibility: hidden;
 
 }
+.homeCarousel li.active{
+    visibility: visible;
+}
+.homeCarousel>li:nth-child(1){
+    background:#dc6c5f;
+}
+.homeCarousel>li:nth-child(2){
+    background:#95dc84;
+}
+.homeCarousel>li:nth-child(3){
+    background:#64b9d2;
+}
+.homeCarousel>li:nth-child(4){
+    background:#000000;
+}
+.circlePoint{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.circlePoint>li{
+    width: 20px;
+    height: 20px;
+    border-radius:50%;
+    margin: 5px;
+    background: rgba(255,255,255,0.5);
+    box-shadow:0 0 4px rgba(25,25,25,0.8) ;
+    float: left;
+}
+.circlePoint>li.active{
+    background: rgba(255,255,255,1)
+}
+@keyframes leftShow {
+    0%{visibility: hidden;transform: translateZ(-200px);}
+    50%{transform: translateX(-40%) rotateY(30deg) scale(0.7)}
+    100%{visibility: visible}
+}
+@keyframes rightHide {
+    0%{visibility: visible}
+    50%{transform: translateX(40%) rotateY(-30deg) scale(0.7)}
+    100%{transform: translateZ(-200px);visibility: hidden;}
+}
+.homeCarousel li.leftShow{
+    visibility: visible;
+    animation: leftShow 2s linear;
+}
+.homeCarousel li.rightHide{
+    visibility: hidden;
+    animation: rightHide 2s linear;
+}
+
+@keyframes leftHide {
+    0%{visibility: visible}
+    50%{transform: translateX(-40%) rotateY(30deg) scale(.8)}
+    100%{transform: translateZ(-200px);visibility: hidden;}
+}
+
+@keyframes rightShow {
+    0%{visibility: hidden;transform: translateZ(-200px);}
+    50%{transform: translateX(40%) rotateY(-30deg) scale(.8)}
+    100%{visibility: visible}
+}
+.homeCarousel li.leftHide{
+    visibility: hidden;
+    animation: leftHide 2s linear;
+}
+.homeCarousel li.rightShow{
+    visibility: visible;
+    animation: rightShow 2s linear;
+}
+
