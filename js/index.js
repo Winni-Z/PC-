@@ -1,7 +1,6 @@
 
 window.onload=function () {
 
-
     // 获取元素
     //头部元素
     var arrowNode=document.querySelector('.arrow');
@@ -14,12 +13,12 @@ window.onload=function () {
     var homePointNodes=document.querySelectorAll('.home .circlePoint li' );
     var homeLiNodes=document.querySelectorAll('.home .homeCarousel li');
     var homeUlNode=document.querySelector('.home .homeCarousel');
-
-
+    //第五屏
+    var aboutUlNode=document.querySelector('.aboutPhoto');
+    var aboutLiNodes=document.querySelectorAll('.aboutPhoto li');
     //变量
     var contentHeight=contentNode.offsetHeight;
     var nowIndex=0;
-    // var contentLinodes=document.querySelectorAll('.contentMain li')
     //封装移动事件
     function move(nowIndex) {
         for (var j = 0; j < headerDownNodes.length; j++) {
@@ -165,7 +164,90 @@ window.onload=function () {
 
     }
 
+//第五屏事件封装
+    aboutEvent();
+    function aboutEvent() {
+        var width= aboutLiNodes[0].offsetWidth;
+        var height=aboutLiNodes[0].offsetHeight;
+        var canvas=null;
+        var roundTimer=null;
+        var paintingTimer=null;
+        clearInterval(roundTimer);
+        clearInterval(paintingTimer);
+        for (var i = 0; i < aboutLiNodes.length; i++) {
+            aboutLiNodes[i].index=i;
+            aboutLiNodes[i].onmouseenter=function () {
+                for (var j = 0; j < aboutLiNodes.length; j++) {
+                    aboutLiNodes[j].style.opacity='0.5';
+                }
+                this.style.opacity='1';
+                if(!canvas){
+                    canvas=document.createElement('canvas');
+                    canvas.width=width;
+                    canvas.height=height;
+                    canvas.className='canvas';
+                    bubbleMove(canvas);
+                    aboutUlNode.appendChild(canvas);
+                }
+                canvas.style.left=this.index*width+'px';
+            }
+        }
+        aboutUlNode.onmouseleave=function(){
+            for (var i = 0; i < aboutLiNodes.length; i++) {
+                aboutLiNodes[i].style.opacity=1;
+            }
+            canvas.remove();
+            canvas=null;
+        }
+        function bubbleMove(canvas) {
+            var roundArr = [];
+            if (canvas.getContext) {
+                var pen = canvas.getContext('2d');
 
+                roundTimer=setInterval(function () {
+                    pen.clearRect(0, 0, canvas.width, canvas.height);
+
+                    for (var i = 0; i < roundArr.length; i++) {
+                        roundArr[i].deg += 6;
+                        var rad = roundArr[i].deg * Math.PI / 180;
+                        var nowLeft = Math.floor(roundArr[i].x  +  Math.sin(rad) * roundArr[i].s);
+                        var nowTop = Math.floor(roundArr[i].y  - rad * roundArr[i].s);
+                        if (nowTop <= 0) {
+                            roundArr.splice(i, 1);
+                            continue;
+                        }
+                        pen.fillStyle = 'rgba(' + roundArr[i].r + ', ' + roundArr[i].g + ', ' + roundArr[i].b + ', 1)';
+                        pen.beginPath();
+                        pen.arc(nowLeft, nowTop, roundArr[i].c_r, 0, Math.PI * 2);
+                        pen.fill();
+                    }
+
+                }, 1000 / 60);
+
+                paintingTimer=setInterval(function () {
+                    var r = Math.floor(Math.random() * 255);
+                    var g = Math.floor(Math.random() * 255);
+                    var b = Math.floor(Math.random() * 255);
+                    var c_r = Math.floor(Math.random() * 8 + 5);
+                    var x = Math.floor(Math.random() * canvas.width);
+                    var y = canvas.height + c_r;
+                    var s = Math.floor(Math.random() * 50 + 10);
+                    roundArr.push({
+                        r: r,
+                        g: g,
+                        b: b,
+                        x: x,
+                        y: y,
+                        c_r: c_r,
+                        deg: 0,
+                        s: s
+                    })
+                }, 1000/60)
+
+            };
+        }
+
+    }
 
 
 
