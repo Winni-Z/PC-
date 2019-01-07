@@ -16,17 +16,26 @@ window.onload=function () {
     //第五屏
     var aboutUlNode=document.querySelector('.aboutPhoto');
     var aboutLiNodes=document.querySelectorAll('.aboutPhoto li');
+    // 右侧导航
+    // var rightNavNode=document.querySelector('.rightNav');
+    var rightNavLiNodes=document.querySelectorAll('.rightNav li');
     //变量
     var contentHeight=contentNode.offsetHeight;
     var nowIndex=0;
+   // 222222   var lastIndex=0;
     //封装移动事件
     function move(nowIndex) {
         for (var j = 0; j < headerDownNodes.length; j++) {
-            headerDownNodes[j].style.width='0';
+            headerDownNodes[j].style.width='';
+            rightNavLiNodes[j].className='';
         }
+        // headerDownNodes[lastIndex].style.width='';
+        // rightNavLiNodes[lastIndex].className='';
         headerDownNodes[nowIndex].style.width='100%';
         arrowNode.style.left=headeraLisNode[nowIndex].getBoundingClientRect().left+headeraLisNode[nowIndex].offsetWidth/2-arrowNode.offsetWidth/2+'px'
         contentUlNode.style.top=-contentHeight*nowIndex+'px';
+        rightNavLiNodes[nowIndex].className='active';
+        // lastIndex=nowIndex;
     }
     //头部小箭头事件
     headerEvent();
@@ -249,7 +258,13 @@ window.onload=function () {
 
     }
 
+//右侧导航绑定事件
+    for (var i = 0; i < rightNavLiNodes.length; i++) {
+        rightNavLiNodes[i].index=i;
+        rightNavLiNodes[i].onclick=function () {
+            nowIndex=this.index;
+            move(nowIndex);
+        }
 
-
-
+    }
 }

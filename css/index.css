@@ -528,3 +528,20 @@ img{display: block;}
     top: 0;
     /*background: pink;*/
 }
+.rightNav{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+.rightNav li{
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+    margin-top: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.rightNav .active{
+    background: #fff;
+}
