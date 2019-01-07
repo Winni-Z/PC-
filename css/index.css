@@ -397,17 +397,91 @@ img{display: block;}
     50%{transform: translateX(-400px) rotateY(180deg)}
     100%{transform: rotateY(180deg)}
 }
+.teamTitle{
+    margin: 50px 0 100px 50px;
+}
 .teamTitle span{
     display: block;
 }
+.teamContent{
+    width: 400px;
+    margin-left: 50px;
+}
+/*位置偏移: left:750px; top:50px(第一个)*/
+/*left:600px; top:290px(第二个)*/
 
-
-
-
-
-/*机器人:*/
-/*宽 167 ; 高 191*/
-/*参照于主体内容区定位,左部偏移量900 上部偏移量170*/
-		/**/
-
-
+.teamImg{
+    z-index: 2;
+    position: absolute;
+    width: 260px;
+    height: 200px;
+    border: 5px rgba(255,255,255,0.5) solid;
+    border-radius: 8px;
+    transition: transform 1s;
+}
+.teamImg:nth-of-type(1){
+    left: 750px;
+    top: 50px;
+}
+.teamImg:nth-of-type(2){
+    left: 600px;
+    top: 290px;
+}
+.teamImg ul{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.teamImg ul li{
+    width: 50%;
+    height: 50%;
+    float: left;
+    overflow: hidden;
+}
+.teamImg ul li div{
+    width: 100%;
+    height: 100%;
+    background-repeat:no-repeat;
+    transition: transform 1.5s;
+}
+.teamImg:nth-of-type(1) div{
+    background-image: url(../imgs/about1.jpg);
+}
+.teamImg:nth-of-type(2) div{
+    background-image: url(../imgs/about3.jpg);
+}
+.teamImg ul li:nth-child(1) div{
+    background-position: 0 0;
+}
+.teamImg ul li:nth-child(2) div{
+    background-position: -130px 0;
+}
+.teamImg ul li:nth-child(3) div{
+    background-position: 0px -100px;
+}
+.teamImg ul li:nth-child(4) div{
+    background-position: -130px -100px;
+}
+.teamImg ul:hover li:nth-child(1) div{
+    transform: translateY(130px);
+}
+.teamImg ul:hover li:nth-child(2) div{
+    transform: translateX(-130px);
+}
+.teamImg ul:hover li:nth-child(3) div{
+    transform: translateX(100px);
+}
+.teamImg ul:hover li:nth-child(4) div{
+    transform: translateY(-130px);
+}
+.teamLine{
+    position: absolute;
+    right: 188px;
+    top: -15px;
+    width: 357px;
+    height: 998px;
+    background-image: url(../imgs/greenLine.png);
+    background-repeat:no-repeat;
+}
