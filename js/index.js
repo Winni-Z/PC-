@@ -19,6 +19,9 @@ window.onload=function () {
     // 右侧导航
     // var rightNavNode=document.querySelector('.rightNav');
     var rightNavLiNodes=document.querySelectorAll('.rightNav li');
+    //音乐部分的元素
+    var musicNode=document.querySelector('.music');
+    var audioMusicNode=document.querySelector('.music .audioMusic');
     //变量
     var contentHeight=contentNode.offsetHeight;
     var nowIndex=0;
@@ -266,5 +269,19 @@ window.onload=function () {
             move(nowIndex);
         }
 
+
+
+
+    }
+
+// /音乐绑定事件
+    musicNode.onclick=function () {
+        if(audioMusicNode.paused){
+            audioMusicNode.play();
+            this.style.backgroundImage='url("imgs/musicon.gif")';
+        }else{
+            audioMusicNode.pause();
+            this.style.backgroundImage='url("imgs/musicoff.gif")';
+        }
     }
 }
