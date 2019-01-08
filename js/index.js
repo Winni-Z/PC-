@@ -17,7 +17,7 @@ window.onload=function () {
     var aboutUlNode=document.querySelector('.aboutPhoto');
     var aboutLiNodes=document.querySelectorAll('.aboutPhoto li');
     // 右侧导航
-    // var rightNavNode=document.querySelector('.rightNav');
+    var rightNavNode=document.querySelector('.rightNav');
     var rightNavLiNodes=document.querySelectorAll('.rightNav li');
     //音乐部分的元素
     var musicNode=document.querySelector('.music');
@@ -28,6 +28,10 @@ window.onload=function () {
     var teamImgNode=document.querySelectorAll('.team .teamImg');
     var  aboutTitleNode=document.querySelector('.aboutTitle');
     var aboutTextNode=document.querySelector('.aboutText');
+    //开机动画元素
+    var maskAnimationNode=document.querySelector('.maskAnimation');
+
+
     //变量
     var contentHeight=contentNode.offsetHeight;
     var nowIndex=0;
@@ -357,11 +361,39 @@ window.onload=function () {
         animationArr[i].anOut();
         
     }
-    // animationArr[3].auOut();
-    // setTimeout(function () {
-    //     animationArr[3].anIn();
-    // },1000)
-    // move(3)
 
+
+   // 开机动画事
+    maskAnimationEvent();
+    function maskAnimationEvent() {
+        var maskTopNode=document.querySelector('.maskAnimation .maskTop');
+        var maskBottomNode=document.querySelector('.maskAnimation .maskBottom');
+        var maskLineNode=document.querySelector('.maskAnimation .maskLine');
+        var maskAnimationNode=document.querySelector('.maskAnimation');
+        var imgArr = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','about1.jpg','about2.jpg','about3.jpg','about4.jpg','worksimg1.jpg','worksimg2.jpg','worksimg3.jpg','worksimg4.jpg','team.png','greenLine.png'];
+        var num=0;
+        for (var i = 0; i < imgArr.length; i++) {
+            var item=imgArr[i];
+            var img=new Image();
+            img.src='imgs/'+item;
+            img.onload=function () {
+                num++;
+                maskLineNode.style.width=num/imgArr.length*100+'%';
+                if(num===imgArr.length){
+                    maskTopNode.style.height=0;
+                    maskBottomNode.style.height=0;
+                    maskLineNode.style.display='none';
+                    maskAnimationNode.addEventListener('transitionend',function () {
+                        maskAnimationNode.remove();
+                        animationArr[0].anIn();
+
+                    })
+
+                }
+            }
+
+        }
+
+    }
 
 }
