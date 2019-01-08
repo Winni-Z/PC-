@@ -22,23 +22,32 @@ window.onload=function () {
     //音乐部分的元素
     var musicNode=document.querySelector('.music');
     var audioMusicNode=document.querySelector('.music .audioMusic');
+    //出入场元素
+    var planeNode=document.querySelectorAll('.course .coursePlane');
+    var workPenNodes=document.querySelectorAll('.works .workPen');
+    var teamImgNode=document.querySelectorAll('.team .teamImg');
+    var  aboutTitleNode=document.querySelector('.aboutTitle');
+    var aboutTextNode=document.querySelector('.aboutText');
     //变量
     var contentHeight=contentNode.offsetHeight;
     var nowIndex=0;
-   // 222222   var lastIndex=0;
+    var lastIndex=0;
     //封装移动事件
     function move(nowIndex) {
-        for (var j = 0; j < headerDownNodes.length; j++) {
-            headerDownNodes[j].style.width='';
-            rightNavLiNodes[j].className='';
-        }
-        // headerDownNodes[lastIndex].style.width='';
-        // rightNavLiNodes[lastIndex].className='';
+        // for (var j = 0; j < headerDownNodes.length; j++) {
+        //     headerDownNodes[j].style.width='';
+        //     rightNavLiNodes[j].className='';
+        // }
+        headerDownNodes[lastIndex].style.width='';
+        rightNavLiNodes[lastIndex].className='';
+
         headerDownNodes[nowIndex].style.width='100%';
         arrowNode.style.left=headeraLisNode[nowIndex].getBoundingClientRect().left+headeraLisNode[nowIndex].offsetWidth/2-arrowNode.offsetWidth/2+'px'
         contentUlNode.style.top=-contentHeight*nowIndex+'px';
         rightNavLiNodes[nowIndex].className='active';
-        // lastIndex=nowIndex;
+        animationArr[lastIndex].anOut();
+        animationArr[nowIndex].anIn();
+        lastIndex=nowIndex;
     }
     //头部小箭头事件
     headerEvent();
@@ -284,4 +293,75 @@ window.onload=function () {
             this.style.backgroundImage='url("imgs/musicoff.gif")';
         }
     }
+//    出入场动画
+    var animationArr=[
+        {
+            anOut: function () {
+                homeUlNode.style.transform='translateY(-200px)'
+                homeUlNode.style.opacity=0;
+            },
+            anIn: function () {
+                homeUlNode.style.transform='translateY(0)'
+                homeUlNode.style.opacity=1;
+            }
+        },
+        {
+            anOut: function () {
+                planeNode[0].style.transform='translate(-50px,-50px)';
+                planeNode[1].style.transform='translate(-50px,50px)';
+                planeNode[2].style.transform='translate(80px,-80px)'
+            },
+            anIn: function () {
+                planeNode[0].style.transform='translate(0,0)';
+                planeNode[1].style.transform='translate(0,0)';
+                planeNode[2].style.transform='translate(0,0)';
+            }
+        },
+        {
+            anOut: function () {
+                workPenNodes[0].style.transform='translate(-100px)';
+                workPenNodes[1].style.transform='translate(100px)';
+                workPenNodes[2].style.transform='translate(100px)'
+            },
+            anIn: function () {
+                workPenNodes[0].style.transform='translate(0)';
+                workPenNodes[1].style.transform='translate(0)';
+                workPenNodes[2].style.transform='translate(0)';
+            }
+        },
+        {
+            anOut: function () {
+                teamImgNode[0].style.transform='rotate(45deg)';
+                teamImgNode[1].style.transform='rotate(-45deg)';
+
+                // aboutPhotoNodes[0].style.transform = 'rotate(0)';
+            },
+            anIn: function () {
+                teamImgNode[0].style.transform='rotate(0)';
+                teamImgNode[1].style.transform='rotate(0)';
+            }
+        },
+        {
+            anOut: function () {
+                aboutTitleNode.style.transform='translateX(-100px)';
+                aboutTextNode.style.transform='translateX(100px)';
+            },
+            anIn: function () {
+                aboutTitleNode.style.transform='translateX(0)';
+                aboutTextNode.style.transform='translateX(0)';
+            }
+        }
+        ]
+    for (var i = 0; i < animationArr.length; i++) {
+         if(i===0) continue;
+        animationArr[i].anOut();
+        
+    }
+    // animationArr[3].auOut();
+    // setTimeout(function () {
+    //     animationArr[3].anIn();
+    // },1000)
+    // move(3)
+
+
 }

@@ -126,6 +126,7 @@ img{display: block;}
     height: 20%;
     position: relative;
     background-repeat:no-repeat;
+    overflow: hidden;
 
 }
 .contentMain>li section{
@@ -158,6 +159,7 @@ img{display: block;}
     width: 100%;
     height: 100%;
     position: relative;
+    transition: transform 1s,opacity 1s;
 }
 .home .homeCarousel{
     position: relative;
@@ -251,10 +253,32 @@ img{display: block;}
     visibility: visible;
     animation: rightShow 2s linear;
 }
-.course{
-    position: relative;
+.coursePlane{
+    position: absolute;
+    transition: transform 1s;
+    background-repeat:no-repeat;
 }
-
+.coursePlane:nth-of-type(1){
+    width:359px;
+    height:283px;
+    background:url(../imgs/plane1.png);
+    left: 300px;
+    top: -100px;
+}
+.coursePlane:nth-of-type(2){
+    left: -100px;
+    top: 200px;
+    width:309px;
+    height:249px;
+    background:url(../imgs/plane2.png)
+}
+.coursePlane:nth-of-type(3){
+    left: 300px;
+    top: 400px;
+    width:230px;
+    height:182px;
+    background:url(../imgs/plane3.png)
+}
 .courseTitle{
     margin: 50px;
     font-size: 80px;
@@ -262,18 +286,23 @@ img{display: block;}
 .courseTitle span{
     color:#009ee0;
     display: block;
+
 }
 .courseMain{
     margin-top: 50px;
     width: 400px;
     margin: 15px;
     margin-left: 50px;
+    position: relative;
+    z-index: 5;
 }
 .rightCoursePhoto{
     position: absolute;
     top: 70px;
     right: 50px;
     width: 480px;
+    /*position: relative;*/
+    z-index: 5;
 }
 .rightCoursePhoto li{
     width: 120px;
@@ -323,7 +352,36 @@ img{display: block;}
 .lineBackground li:nth-child(3){right: 260px;}
 .lineBackground li:nth-child(4){right: 380px;}
 .lineBackground li:nth-child(5){right: 504px;}
+.works{
+position: relative;
+}
 
+.works .workPen{
+    position: absolute;
+    transition: transform 1s;
+    background-repeat:no-repeat;
+}
+.works .workPenOne{
+    width:180px;
+    height:97px;
+    background-image:url(../imgs/pencel1.png);
+    left:500px;
+    top:0;
+}
+.workPenTwo{
+    width:268px;
+    height:38px;
+    background-image:url(../imgs/pencel2.png) ;
+    left:300px;
+    top:250px;
+}
+.works .workPenThree{
+    width:441px;
+    height:231px;
+    background-image:url(../imgs/pencel3.png);
+    left:650px;
+    top:300px;
+}
 .worksTitle{
     margin: 50px 0px 100px 50px;
 }
@@ -335,6 +393,7 @@ img{display: block;}
 }
 .worksList li{
     position: relative;
+    z-index: 6;
     float: left;
     width: 220px;
     height: 133px;
@@ -343,6 +402,8 @@ img{display: block;}
 }
 .worksList li img{
     transition: transform 1.5s;
+    position: relative;
+    z-index: 6;
 }
 .worksList li:last-child{
     width: 332px;
@@ -404,6 +465,7 @@ img{display: block;}
 }
 .teamTitle{
     margin: 50px 0 100px 50px;
+    transition: transform 1s;
 }
 .teamTitle span{
     display: block;
@@ -411,6 +473,7 @@ img{display: block;}
 .teamContent{
     width: 400px;
     margin-left: 50px;
+    transition: transform 1s;
 }
 /*位置偏移: left:750px; top:50px(第一个)*/
 /*left:600px; top:290px(第二个)*/
@@ -494,11 +557,13 @@ img{display: block;}
     margin: 50px;
     width: 400px;
     float: left;
+    transition: transform 1s;
 }
 .aboutText{
     float: right;
     margin: 50px;
     width: 400px;
+    transition: transform 1s;
 }
 .aboutPhoto{
     width: 944px;
